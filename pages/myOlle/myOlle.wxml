@@ -1,0 +1,42 @@
+<text class="header_style">My OLLE</text>
+
+<view>
+  <!--横向1个固定大小，一个弹簧  -->
+  <view class="layout_horizontal">
+    <view style="width:130px; padding-left:10px">
+      <button class='btn2' bindtap="changeName">NAME:</button>
+
+    </view>
+    <view style="flex:1;width:100px;">
+    <text class='textLayout' style='font-weight: bold; font-size: larger'>  {{name}}</text>
+    </view>
+  </view>
+
+  <view class="layout_horizontal">
+    <view style="width:130px; padding-left:10px">
+      <button class='btn2' bindtap="changeSurname">SURNAME:</button>
+
+    </view>
+    <view style="flex:1;width:100px;">
+    <text class='textLayout' style='font-weight: bold; font-size: larger'>  {{surname}}</text>
+    </view>
+  </view>
+
+  <view class="layout_horizontal">
+    <view style="width:130px; padding-left:10px">
+      <button class='btn2' bindtap="changeUsername">USERNAME:</button>
+
+    </view>
+    <view style="flex:1;width:100px;">
+    <text class='textLayout' style='font-weight: bold; font-size: larger'>  {{username}}</text>
+    </view>
+  </view>
+</view>
+
+<view>
+  <text class='title_font'>Current Role:</text>
+  <text class='title_font' style='padding-left: 20px; color: #2c3646;'>{{role}}</text>
+</view>
+
+<button class='btn1' bindtap='changePassword' style='background-color: #9b887d'>CHANGE PASSWORD</button>
+<button class='btn1' bindtap='logout' style='background-color: #965454'>LOG OUT</button>

@@ -1,0 +1,67 @@
+@import "../lib/weui.wxss";
+
+.textLayout{
+  padding-left: 10px;
+  font-weight: bold;
+}
+
+.textLayout-post{
+
+  padding-left: 10px;
+}
+
+.myButton1{
+  border: 1px solid rgb(0, 110, 255); 
+  border-radius: 2px;  
+  background-color: white;
+  margin: 15rpx;
+  box-shadow: 5rpx 5rpx 5rpx 5rpx rgb(31, 6, 56);
+  
+}
+
+.myButton2{
+  border: 5px solid rgb(0, 110, 255); 
+  border-radius: 2px;  
+  background-color: white;
+  margin: 15rpx;
+  
+  
+}
+
+.myButton{
+  border: 1px solid rgb(251, 255, 0); 
+  border-radius: 2px;  
+  background-color: white;
+  margin: 15rpx;
+  box-shadow: 5rpx 5rpx 5rpx 5rpx rgb(31, 6, 56);
+  
+}
+
+.video_style{
+  justify-content: center; 
+  flex-direction: column; 
+  display: flex;
+  padding-left: 40px
+}
+
+.circle{
+    width: 68px;
+    height: 68px;
+    border: 1 solid #123456;
+    border-radius: 250px; 
+   font-size:5;
+  margin-left: 5rpx;
+}
+
+.image{
+  top: 20rpx;
+  margin-left: -25rpx;
+   display: flex;
+   width: 135rpx;
+    height: 135rpx;
+   
+}
+
+page{
+  background-color: #f0ebe5;
+}

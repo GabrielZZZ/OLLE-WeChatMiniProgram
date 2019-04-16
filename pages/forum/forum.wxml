@@ -1,0 +1,65 @@
+
+ <view wx:if="{{role == 666  || role == 1}}" style='padding-top:5px'> 
+      <view class="flex-row" style="display: flex;flex-direction: row;justify-content: center;">
+      <view class="flex-view-item">
+        <text decode="{{true}}" style='font-weight: bold; color: #2c3646;'> Normal Topic&nbsp;&nbsp;</text>
+      </view>
+      <view class="flex-view-item">
+        <view style='display: flex; flex-direction: row; justify-content: center;'>
+            <switch checked="{{topicType}}" bindchange="changeTopicType" type='switch'/>
+        </view>
+      </view>
+      <view class="flex-view-item">
+        <text  decode="{{true}}" style='font-weight: bold; color: #2c3646;'>&nbsp;&nbsp;NAA Topic</text>
+      </view>
+      </view>
+</view>
+
+ 
+ 
+ 
+
+<view class="layout_horizontal">
+    <view style="width:200px">
+      <text class="header_style">Topics List</text>
+
+    </view>
+    <view style="flex:1;width:100px;">
+      <view wx:if="{{role == 666}}">
+        <view class='button_layout'>
+          <button bindtap='createTopic' class='button_create'>+</button>
+        </view>
+      </view>
+    </view>
+</view>
+
+
+
+
+<view wx:if="{{topic_type == false}}">
+  <view wx:for="{{topicsData}}" wx:for-item="item" wx:for-index="index">
+  
+  <form bindsubmit="formSubmit" report-submit="true">
+      <button form-type='submit' id='{{index}}' class='myButton'>
+        <text style='font-weight: bold; font-size: larger'>Week{{item.topic_week}}\n</text>
+        <text>{{item.topic_title}}\n</text>
+        <text>Deadline: </text>
+        <text style='color: purple'>{{item.topic_date}}\n</text>
+      </button>
+    </form>
+  </view>
+</view>
+
+<view wx:if="{{topic_type == true}}">
+  <view wx:for="{{naaTopicsData}}" wx:for-item="item" wx:for-index="index">
+  
+  <form bindsubmit="formSubmit" report-submit="true">
+      <button form-type='submit' id='{{index}}' class='myButton'>
+        <text style='font-weight: bold; font-size: larger'>Week{{item.topic_week}}\n</text>
+        <text>{{item.topic_title}}\n</text>
+        <text>Deadline: </text>
+        <text style='color: purple'>{{item.topic_date}}\n</text>
+      </button>
+    </form>
+  </view>
+</view>

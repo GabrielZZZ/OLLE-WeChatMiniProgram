@@ -1,0 +1,16 @@
+@import "../lib/weui.wxss";
+page{
+  background-color: #f0ebe5;
+}
+
+.btn1 {
+  width: 80%;
+  margin-top: 20rpx;
+  background-color: burlywood;
+  color: white;
+  border-radius: 98rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}

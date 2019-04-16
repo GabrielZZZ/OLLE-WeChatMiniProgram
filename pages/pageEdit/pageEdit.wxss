@@ -1,0 +1,13 @@
+@import "../lib/weui.wxss";
+
+.input-radius{
+  
+  
+  width: 300px;
+  height: 8.8rem;
+  min-height: 5.8rem;
+}
+
+page{
+  background-color: #f0ebe5;
+}

@@ -1,0 +1,23 @@
+/* 日历 */
+@import "../lib/weui.wxss";
+
+.calendar {
+    background-color:#f0ebe5;  
+    padding-top: 10px; 
+}
+.calendar-header{
+  font-size: large;
+  color: #59518d;
+}
+.calendar-board{
+  color: #c7cbe2;
+   font-weight: bold;
+}
+
+.textLayout{
+  
+  font-weight: bold
+}
+page{
+  background-color: #f0ebe5;
+}

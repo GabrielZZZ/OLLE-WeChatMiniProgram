@@ -1,0 +1,62 @@
+<view class="container">
+    <view class="list">
+        <button type="primary" class="button" bindtap="simpleUpload_image">UPLOAD IMAGE</button>
+        <text>\n</text>
+
+        <button type="primary" class="button" bindtap="simpleUpload_video">UPLOAD VIDEO</button>
+        <text>\n</text>
+    
+
+    <button type="primary" class="button" bindtap="simpleUpload_file">UPLOAD FILE</button>
+    </view>
+</view>
+
+
+<form bindsubmit="formSubmit">
+  <view class="page-section">
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <input class="weui-input" auto-focus placeholder="Week" name="week"/>
+      </view>
+    </view>
+  </view>
+
+  <view class="page-section">
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <input class="weui-input" auto-focus placeholder="Topic Title" name="title"/>
+      </view>
+    </view>
+  </view>
+
+  <view class="page-section">
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <input class="weui-input" auto-focus placeholder="Topic Detail" name="detail"/>
+      </view>
+    </view>
+  </view>
+
+
+  <view class="section">
+  <view class="section__title" style='padding-left: 10px'>Deadline: </view>
+  <picker
+    mode="date"
+    value="{{endDate}}"
+    start="2015-09-01"
+    end="2090-09-01"
+    bindchange="bindEndDateChange"
+    name="endDate"
+  >
+    <view class="weui-cells weui-cells_after-title" style='padding-left: 10px'>
+      Currently Sellected: {{endDate}}
+    </view>
+  </picker>
+  </view>
+
+  
+  <button type="warn" size="default"  plain="{{false}}"
+        
+        form-type='submit'> CONFIRM </button>
+
+</form>

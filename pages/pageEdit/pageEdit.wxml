@@ -1,0 +1,33 @@
+<!--index.wxml-->
+<view class="container">
+    <view class="list">
+        <button type="primary" class="button" bindtap="simpleUpload_image">UPLOAD IMAGE</button>
+        <text>\n</text>
+
+        <button type="primary" class="button" bindtap="simpleUpload_video">UPLOAD VIDEO</button>
+    </view>
+</view>
+
+<form bindsubmit="formSubmit">
+  
+  <view class="page-section">
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <input class="weui-input" auto-focus='false' placeholder="Topic Title" name="page_title"/>
+      </view>
+    </view>
+  </view>
+
+  <view class="page-section">
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <textarea class="input-radius" auto-focus placeholder="Topic Detail" name="page_detail" auto-height='true' auto-focus='false' maxlength='3000'/>
+      </view>
+    </view>
+  </view>
+
+
+  
+  <button size="default"  form-type='submit'> SUBMIT </button>
+
+</form>

@@ -1,0 +1,21 @@
+<view>
+<view wx:if="{{isShowImage}}">
+  <image style="width: {{imagewidth}}px; height: {{imageheight}}px;"  src="{{imageUrl}}" bindload="imageLoad"></image>
+</view>
+<view wx:if="{{isShowVideo}}" style='padding-left: 40px;'>
+  <video src="{{videoUrl}}"></video>
+</view>
+  <text>\n</text>
+  <view style='text-align: center;'>
+    <text class='title_font'>{{title}}\n</text>
+  </view>
+    <view class='myButton'>
+    <text class='textLayout'> Author: </text>
+    <text>{{post_username}}\n</text>
+    <text class='textLayout'> Description: \n</text>
+    <view style='padding-left: 10px'>
+      <text style='padding-left: 10px'>{{detail}}\n</text>
+    </view>
+  </view>
+</view>
+

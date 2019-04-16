@@ -1,0 +1,13 @@
+<text> Contents: \n</text>
+
+<form bindsubmit="formSubmit">
+  <view class="page-section">
+    
+        <textarea class="input-radius" auto-focus placeholder="Contents" name="user_post" maxlength='500'/>
+  </view>
+
+  <button type="warn" size="default"  plain="{{false}}"
+          
+          form-type='submit'> Submit </button>
+
+</form>

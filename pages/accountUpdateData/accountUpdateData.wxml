@@ -1,0 +1,14 @@
+<form bindsubmit="formSubmit">
+<view class="page-section">
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+      <input class="weui-input" auto-focus placeholder="New Information" name="name"/>
+    </view>
+  </view>
+</view>
+
+<button type="primary" size="default"  plain="{{false}}"
+        
+        form-type='submit'> SAVE </button>
+
+</form>

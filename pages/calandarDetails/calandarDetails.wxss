@@ -1,0 +1,28 @@
+/* pages/calandarDetails.wxss */
+@import "../lib/weui.wxss";
+
+/*横向布局  */
+.layout_horizontal{
+  
+  display: flex;
+  /*row 横向  column 列表  */
+  flex-direction: row;
+  
+}
+
+.textLayout{
+  padding-left: 10px;
+  font-weight: bold
+}
+page{
+  background-color: #f0ebe5;
+}
+
+.myButton1{
+  border: 1px solid rgb(0, 110, 255); 
+  border-radius: 2px;  
+  background-color: white;
+  margin: 15rpx;
+  box-shadow: 5rpx 5rpx 5rpx 5rpx rgb(31, 6, 56);
+  
+}

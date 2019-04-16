@@ -1,0 +1,68 @@
+<view>
+
+<view wx:if="{{!isShowImage}}">
+    <image style="width: {{imagewidth}}px; height: {{imageheight}}px;"  src="https://olle2019-1257377975.cos.ap-chengdu.myqcloud.com/OLLE.png?q-sign-algorithm=sha1&q-ak=AKIDw7RgToPKrTOflN9gkip5vnzS3MjnZ3ay&q-sign-time=1555255804;1555257604&q-key-time=1555255804;1555257604&q-header-list=&q-url-param-list=&q-signature=3fa4f22409336fe606769bfb8176c4224e2c79ba&x-cos-security-token=fce8830d3117faace84d682f4d5c9900be272e8610001" bindload="imageLoad"></image>
+  </view>
+
+  <view wx:if="{{isShowImage}}">
+    <image style="width: {{imagewidth}}px; height: {{imageheight}}px;"  src="{{imageUrl}}" bindload="imageLoad"></image>
+  </view>
+  <view wx:if="{{isShowVideo}}" class='video_style'>
+    <video src="{{videoUrl}}"></video>
+  </view>
+
+  <view wx:if="{{isShowFile}}">
+
+     <button  class="circle" bindtap='downloadFile'>
+ <image mode='aspectFill' src='../images/file.png' plain='true' class='image'></image>
+ <text>Click Me to View</text>
+ </button>
+
+
+  </view>
+
+
+<view>
+  <text class='textLayout'> Subject: </text>
+  <text>{{title}}\n</text>
+  <text class='textLayout'> Description: \n</text>
+  <textarea style='padding-left: 10px'>{{detail}}\n</textarea>
+  
+  <text class='textLayout'> Deadline: </text>
+  <text>{{date}}\n</text>
+  
+  <button bindtap="goToReplyTopic"> Reply </button>
+</view>
+</view>
+
+<view wx:for="{{postedReply}}" wx:for-item="item" wx:for-index="index1">
+  <view class='myButton1'>
+  
+    <text class='textLayout'>{{item.username}}\n</text>
+    <text class='textLayout'>Tag: </text>
+    <text>{{item.language}}\n</text>
+    <text class='textLayout'>Posts: \n</text>
+    <view style='padding-left: 15px'>
+      <text class='textLayout-post'>{{item.user_post}}\n\n</text>
+    </view>
+    <text class='textLayout'>Date: </text>
+    <text class='textLayout-post'>{{item.post_date}}\n</text>
+    <button bindtap='goToReplyPost' data-index1="{{index1}}"> Reply </button>
+    <button bindtap='getComments' data-index1="{{index1}}"> View Comments </button>
+
+  <!--Get Comments-->
+    <view wx:if="{{index1 == hold}}">
+      <view wx:for="{{forumReply}}" wx:for-item="forum_item" wx:for-index="forum_index">
+        <view class='myButton'>
+          <text class='textLayout'>{{forum_item.username}}\n</text>
+          <text class='textLayout'>Tag: </text>
+          <text>{{forum_item.language}}\n</text>
+          <text class='textLayout'>Posts: \n</text>
+          <textarea class='textLayout-post'>{{forum_item.user_post}}\n\n</textarea>
+          <text class='textLayout'>Date: </text>
+          <text class='textLayout-post'>{{forum_item.post_date}}\n</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

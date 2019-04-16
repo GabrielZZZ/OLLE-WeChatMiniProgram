@@ -1,0 +1,58 @@
+
+<form bindsubmit="formSubmit">
+<view class="page-section">
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+      <input class="weui-input" auto-focus placeholder="First Name" name="name"/>
+    </view>
+  </view>
+</view>
+
+<view class="page-section">
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+      <input class="weui-input" auto-focus placeholder="Last Name" name="surname"/>
+    </view>
+  </view>
+</view>
+
+<view class="page-section">
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+      <input class="weui-input" auto-focus placeholder="Username" name="username"/>
+    </view>
+  </view>
+</view>
+
+
+<view class="page-section">
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+      <input class="weui-input" auto-focus placeholder="Email" name="email"/>
+    </view>
+  </view>
+</view>
+
+
+<view class="page-section">
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <input class="weui-input" password type="text" placeholder="Password" name="password" />
+      </view>
+    </view>
+</view>
+
+<radio-group class="radio" bindchange="radioChange" name="language">
+  <label class="radio" wx:for="{{items}}"   style="display: flex; padding-left: 5px;">
+    <radio value="{{item.name}}" checked="{{item.checked}}">
+    {{item.value}}</radio>
+  </label>
+
+</radio-group>
+
+
+<button type="warn" size="default"  plain="{{false}}"
+        
+        form-type='submit'> SIGN UP </button>
+
+</form>

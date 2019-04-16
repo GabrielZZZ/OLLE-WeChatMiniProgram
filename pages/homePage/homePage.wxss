@@ -1,0 +1,49 @@
+@import "../lib/weui.wxss";
+
+
+.header_style{
+  font-style: normal;
+  font-size: xx-large;
+  font-weight: bolder;
+  padding-left: 15px
+}
+
+.myButton{
+  border: 1px solid rgb(0, 110, 255); 
+  border-radius: 2px;  
+  background-color: #f0ebe5;
+  margin: 15rpx;
+  box-shadow: 5rpx 5rpx 5rpx 5rpx rgb(31, 6, 56);
+  
+}
+
+.button_create{
+  background-color: #f0ebe5;
+  color: blue;
+  padding-left: 130px;
+  width: 100%;
+  font-size: x-large;
+  height: 50%;
+}
+
+.button_create::after{
+  border: 0;
+}
+
+.button_layout{
+  flex:1;
+  
+  justify-content:flex-end;
+}
+
+.layout_horizontal{
+  
+  display: flex;
+  /*row 横向  column 列表  */
+  flex-direction: row;
+  height: 60px;
+}
+
+page{
+  background-color: #f0ebe5;
+}

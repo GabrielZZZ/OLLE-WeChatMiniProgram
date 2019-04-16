@@ -1,0 +1,26 @@
+<form bindsubmit="formSubmit" report-submit="true">
+<view class="page-section">
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+      <input class="weui-input" auto-focus placeholder="Username/Email" name="username"/>
+    </view>
+  </view>
+</view>
+
+<view class="page-section">
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <input class="weui-input" password type="text" placeholder="Password" name="password" />
+      </view>
+    </view>
+</view>
+
+<button type="default" size="default"  class='btn1'
+        
+        form-type='submit' style='background-color: #965454; color: white'> LOGIN </button>
+
+<button type="default" size="default" loading="{{loading}}" class='btn1'
+        disabled="{{disabled}}" bindtap="navigation" hover-class="other-button-hover" style='background-color: #9b887d; color: white'>
+        SIGN UP </button>
+
+</form>

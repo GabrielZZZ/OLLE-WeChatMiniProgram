@@ -1,0 +1,30 @@
+<calendar  calendar-style="calendar"  header-style="calendar-header"  board-style="calendar-board"
+ days-color="{{dayStyle}}" weeks-type="cn" binddayClick="dayClick" />
+
+<view wx:if="{{role == 666}}">
+<button style="background-color: #965454; color: white"  plain="{{false}}"bindtap='createEvent'> CREATE EVENT </button>
+</view>
+
+
+<!--改为for循环-->
+
+<view wx:if="{{eventData1.length  == 0}}">
+  <text>Oops! Nothing to do today! Go have fun!</text>
+
+</view>
+
+ <view wx:for="{{eventData1}}" wx:for-item="item" wx:for-index="index">
+ 
+  <button bindtap='showDetails' id='{{index}}' style='background-color:#f0ebe5'>
+    <text class='textLayout'>Title: </text>
+    <text>{{item.title}}\n</text>
+    <text class='textLayout'>Start time: </text>
+    <text>{{item.startTime}}\n</text>
+    <text class='textLayout'>End time: </text>
+    <text>{{item.endTime}}\n</text>
+  </button>
+ </view>
+
+
+
+

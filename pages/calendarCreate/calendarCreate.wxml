@@ -1,0 +1,87 @@
+<form bindsubmit="formSubmit" report-submit="true">
+  <view class="page-section">
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <input class="weui-input" auto-focus placeholder="Title" name="title"/>
+      </view>
+    </view>
+  </view>
+
+  <view class="page-section">
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <input class="weui-input" auto-focus placeholder="Description" name="description"/>
+      </view>
+    </view>
+  </view>
+
+
+  <view class="section">
+  <view class="section__title" style='padding-left: 15px'>Start Date: </view>
+  <picker
+    mode="date"
+    value="{{startDate}}"
+    start="2015-09-01"
+    end="2090-09-01"
+    bindchange="bindStartDateChange"
+    name="startDate"
+  >
+    <view class="weui-cells weui-cells_after-title" style='padding-left: 15px'>
+      Currently Sellected: {{startDate}}
+    </view>
+  </picker>
+  </view>
+
+  <view class="section">
+  <view class="section__title" style='padding-left: 15px'>Start Time</view>
+  <picker
+    mode="time"
+    value="{{startTime}}"
+    start="00:00"
+    end="23:59"
+    bindchange="bindStartTimeChange"
+    name="startTime"
+  >
+    <view class="weui-cells weui-cells_after-title" style='padding-left: 15px'>
+      Currently Sellected: {{startTime}}
+    </view>
+  </picker>
+  </view>
+
+  <view class="section">
+  <view class="section__title" style='padding-left: 15px'>End Date: </view>
+  <picker
+    mode="date"
+    value="{{endDate}}"
+    start="2015-09-01"
+    end="2090-09-01"
+    bindchange="bindEndDateChange"
+    name="endDate"
+  >
+    <view class="weui-cells weui-cells_after-title" style='padding-left: 15px'>
+      Currently Sellected: {{endDate}}
+    </view>
+  </picker>
+  </view>
+
+  <view class="section">
+  <view class="section__title" style='padding-left: 15px'>End Time</view>
+  <picker
+    mode="time"
+    value="{{endTime}}"
+    start="00:00"
+    end="23:59"
+    bindchange="bindEndTimeChange"
+    name="endTime"
+  >
+    <view class="weui-cells weui-cells_after-title" style='padding-left: 15px'>
+      Currently Sellected: {{endTime}}
+    </view>
+  </picker>
+  </view>
+
+  <button type="warn" size="default"  plain="{{false}}"
+        
+        form-type='submit'> CONFIRM </button>
+
+</form>

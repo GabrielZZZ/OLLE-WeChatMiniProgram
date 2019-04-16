@@ -1,0 +1,69 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/login/login",
+    
+    "pages/logs/logs",
+    "pages/pageEdit/pageEdit",
+    "pages/calander/calander",
+    "pages/forum/forum",
+    "pages/forumDetails/forumDetails",
+    "pages/myOlle/myOlle",
+    "pages/signUp/signUp",
+    "pages/accountUpdateData/accountUpdateData",
+    "pages/accountUpdatePassword/accountUpdatePassword",
+    "pages/calandarDetails/calandarDetails",
+    "pages/calendarCreate/calendarCreate",
+    "pages/forumReply/forumReply",
+    "pages/createTopic/createTopic",
+    "pages/verification/verification",
+    "pages/homePage/homePage",
+    "pages/pageDetails/pageDetails"
+    
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#2c3646",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/homePage/homePage",
+        "text": "HomePage",
+        "iconPath": "pages/images/homePage.png",
+        "selectedIconPath": "pages/images/homePage1.png"
+      },
+      {
+        "pagePath": "pages/forum/forum",
+        "text": "Forum",
+        "iconPath": "pages/images/forum.png",
+        "selectedIconPath": "pages/images/forum1.png"
+      },
+      
+      {
+        "pagePath": "pages/calander/calander",
+        "text": "Calendar",
+        "iconPath": "pages/images/calendar.png",
+        "selectedIconPath": "pages/images/calendar1.png"
+      },
+      {
+        "pagePath": "pages/myOlle/myOlle",
+        "text": "MyOLLE",
+        "iconPath": "pages/images/myOlle.png",
+        "selectedIconPath": "pages/images/myOlle1.png"
+      }
+      
+    ]
+  },
+  "plugins": {
+    "calendar": {
+      "version": "1.1.3",
+      "provider": "wx92c68dae5a8bb046"
+    }
+  }
+}

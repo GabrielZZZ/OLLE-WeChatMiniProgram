@@ -1,0 +1,42 @@
+<view class='myButton1'>
+  <!--横向1个固定大小，一个弹簧  -->
+  <view class="layout_horizontal">
+    <view style="width:60px">
+      <text class='textLayout'>Title: </text>
+    </view>
+    <view style="flex:1;width:100px;">
+    <text>  {{title}}</text>
+    </view>
+  </view>
+
+  <view >
+    <text class='textLayout'>Description: \n</text>
+
+    <textarea style='padding-left: 10px'>  {{description}}</textarea>
+  </view>
+
+
+  <view class="layout_horizontal">
+    <view style="width:70px">
+      <text class='textLayout'>From: </text>
+    </view>
+    <view style="flex:1;width:100px;">
+    <text>  {{startTime}}</text>
+    </view>
+  </view>
+
+  <view class="layout_horizontal">
+    <view style="width:70px">
+      <text class='textLayout'>To: </text>
+    </view>
+    <view style="flex:1;width:100px;">
+    <text>  {{endTime}}</text>
+    </view>
+  </view>
+</view>
+
+<view wx:if="{{role == Admin}}">
+
+  <button bindtap='editEvent'>Edit</button>
+  <button bindtap='deleteEvent'>Delete</button>
+</view>

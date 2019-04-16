@@ -1,0 +1,22 @@
+<form bindsubmit="formSubmit">
+  <view class="page-section">
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <input class="weui-input" auto-focus placeholder="Validation Code" name="validation"/>
+      </view>
+    </view>
+  </view>
+
+
+  <button type="warn" size="default"  plain="{{false}}"
+        
+        form-type='submit'> SUBMIT </button>
+
+  
+  <button bindtap='resend' size="default" > Resend </button>
+
+
+</form>
+
+<text style='margin-left: 10px;'>If you haven't received the verification code, please check the junk folder in your email account first. There is a great possibility that it has been moved to there since your mail server think of it as garbage.</text>
+

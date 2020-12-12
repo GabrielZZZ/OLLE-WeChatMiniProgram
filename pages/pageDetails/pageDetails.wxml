@@ -1,21 +1,93 @@
 <view>
-<view wx:if="{{isShowImage}}">
+  <view wx:if="{{isShowImage}}">
+    <!-- Image Swiper -->
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay1}}" interval="{{interval}}" duration="{{duration}}" circular="true" style='width:100%; height:500rpx;'>
+      <swiper-item>
+        <image v-if="imageUrl" src="{{imageUrl}}" style="width:100%;  height:500rpx" mode="aspectFill" bindtap="showBigger" data-src="{{imageUrl}}" />
+      </swiper-item>
+      <view wx:if="{{image2Available}}">
+        <swiper-item>
+          <image v-if="imageUrl" src="{{imageUrl2}}" style="width:100%;  height:500rpx" mode="aspectFill" bindtap="showBigger" data-src="{{imageUrl2}}" />
+        </swiper-item>
+      </view>
+      <view wx:if="{{image3Available}}">
+        <swiper-item>
+          <image v-if="imageUrl" src="{{imageUrl3}}" style="width:100%;  height:500rpx" mode="aspectFill" bindtap="showBigger" data-src="{{imageUrl3}}" />
+        </swiper-item>
+      </view>
+    </swiper>
+    <!-- >
   <image style="width: {{imagewidth}}px; height: {{imageheight}}px;"  src="{{imageUrl}}" bindload="imageLoad"></image>
-</view>
+< -->
+  </view>
+  <!-- >
 <view wx:if="{{isShowVideo}}" style='padding-left: 40px;'>
   <video src="{{videoUrl}}"></video>
 </view>
+
+< -->
+
+
+
+		
+
   <text>\n</text>
   <view style='text-align: center;'>
     <text class='title_font'>{{title}}\n</text>
   </view>
-    <view class='myButton'>
-    <text class='textLayout'> Author: </text>
-    <text>{{post_username}}\n</text>
-    <text class='textLayout'> Description: \n</text>
+  <view wx:if="{{role == 666}}">
+    <view class='button_layout'>
+      <button bindtap='pageEdit' class='button_create'>Edit</button>
+    </view>
+  </view>
+
+
+<view wx:if="{{isShowFile}}">
+    <view class="myButton1">
+        <button class='circle' bindtap='downloadFile'>
+          <view class="layout_horizontal">
+            <view style="width:30px; ">
+              <image
+              mode='aspectFill'
+              src='{{file_photo}}'
+              plain='true'
+              class='image'
+              />
+            </view>
+
+            <view style="flex:1;width:100px;">
+              <text>Click Me to View</text>
+            </view>
+          </view>
+        </button>
+    </view>
+</view>
+
+<view wx:if="{{isShowVideo}}">
+    <view class="myButton1">
+      <view style="margin-left: 5px">
+        <text>Here is a video URL, please click the following button to copy it and open in your phone browser:\n</text>
+        <button bindtap="copy">  COPY </button>
+      </view>
+    </view>
+  </view>
+
+
+
+
+  <view class='myButton'>
+    <view class="layout_horizontal">
+      <view style="width:130px; padding-left:10px">
+        <image class="userinfo-avatar" src="{{profile_photo}}" mode="scaleToFill" />
+      </view>
+      <view style="flex:1;width:100px;">
+        <text class='textLayout'>Author:</text>
+        <text>{{post_username}}\n</text>
+      </view>
+    </view>
+    <text class='textLayout'>Description: \n</text>
     <view style='padding-left: 10px'>
       <text style='padding-left: 10px'>{{detail}}\n</text>
     </view>
   </view>
 </view>
-

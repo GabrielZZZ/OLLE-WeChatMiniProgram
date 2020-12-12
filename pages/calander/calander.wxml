@@ -13,7 +13,7 @@
 
 </view>
 
- <view wx:for="{{eventData1}}" wx:for-item="item" wx:for-index="index">
+ <view wx:for="{{eventData1}}" wx:key="key"  wx:for-item="item" wx:for-index="index">
  
   <button bindtap='showDetails' id='{{index}}' style='background-color:#f0ebe5'>
     <text class='textLayout'>Title: </text>

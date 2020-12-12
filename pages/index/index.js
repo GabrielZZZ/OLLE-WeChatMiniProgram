@@ -1,13 +1,14 @@
 //index.js
 const app = getApp()
 var baseUrl = app.globalData.host;
-
+var imageUtil = require('../../utils/util.js');
 Page({
   data: {
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     //check whether the version is available
 
-    isHide: false
+    isHide: false,
+    showUpdate: true
   },
 
   onLoad: function () {
@@ -103,5 +104,22 @@ Page({
         }
       });
     }
-  }
+  },
+
+  goToUpdateHistory: function(e){
+    console.log("hahah")
+    wx.navigateTo({
+      url:'../updateHistory/updateHistory'
+    })
+  },
+
+  imageLoad: function (e) {
+    var imageSize = imageUtil.imageUtil(e)
+    this.setData({
+      imagewidth: imageSize.imageWidth,
+      imageheight: imageSize.imageHeight
+    })
+  },
+  
+
 })

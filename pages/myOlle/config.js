@@ -14,4 +14,4 @@ var config = {
   SecretKey: 'rXbnrXZsw4f2vdaixVTDkE2e6kD8luYz'//replace with yours
 }
 
-module.exports = config 
+module.exports = config

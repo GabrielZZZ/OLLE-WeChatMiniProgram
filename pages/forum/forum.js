@@ -1,6 +1,8 @@
 const app = getApp();
 var baseUrl = app.globalData.host;
 var array = [];
+var imageUtil = require('../../utils/util.js');
+
 
 Page({
 
@@ -13,9 +15,41 @@ Page({
     token: '',
     topic_type: false,
     naaTopicsData: [],
-    role: app.globalData.role
+    role: app.globalData.role,
+
+    indicatorDots: false,
+    autoplay: false,
+    interval: 2000,
+    indicatordots: true,
+    duration: 1000,
+
+    profile_photo: '',
+    language:'',
+    scrollHeight:'',
+    imageHeight:''
   },
 
+  computeScrollViewHeight: function() {
+    let that = this
+    
+    //获取屏幕可用高度
+    let screenHeight = wx.getSystemInfoSync().windowHeight
+    //计算 scroll-view 的高度
+    let scrollHeight = screenHeight +  that.data.imageHeight
+    console.log("scrollHeight: " + scrollHeight);
+    that.setData({
+      scrollHeight: scrollHeight
+    })
+    
+  },
+
+  imageLoad: function (e) {
+    var imageSize = imageUtil.imageUtil(e)
+    this.setData({
+      imagewidth: imageSize.imageWidth,
+      imageheight: imageSize.imageHeight
+    })
+  },
   changeTopicType: function (e) {
     var that  =  this;
     console.log(`Switch样式点击后是否选中：`, e.detail.value);
@@ -34,14 +68,14 @@ Page({
   if(that.data.topic_type == false){
     console.log("fileUrl: " + that.data.topicsData[index].fileUrl);
     wx.navigateTo({
-      url: '../forumDetails/forumDetails?week=' + encodeURIComponent(that.data.topicsData[index].topic_week) + '&title=' + encodeURIComponent(that.data.topicsData[index].topic_title) + '&date=' + encodeURIComponent(that.data.topicsData[index].topic_date) + '&detail=' + encodeURIComponent(that.data.topicsData[index].topic_detail) + '&topic_id=' + encodeURIComponent(that.data.topicsData[index].topic_id) + '&index=' + encodeURIComponent(index) + '&imageUrl=' + encodeURIComponent(that.data.topicsData[index].imageUrl) + '&videoUrl=' + encodeURIComponent(that.data.topicsData[index].videoUrl) + '&fileUrl=' + encodeURIComponent(that.data.topicsData[index].fileUrl)
+      url: '../forumDetails/forumDetails?week=' + encodeURIComponent(that.data.topicsData[index].topic_week) + '&title=' + encodeURIComponent(that.data.topicsData[index].topic_title) + '&date=' + encodeURIComponent(that.data.topicsData[index].topic_date) + '&detail=' + encodeURIComponent(that.data.topicsData[index].topic_detail) + '&topic_id=' + encodeURIComponent(that.data.topicsData[index].topic_id) + '&index=' + encodeURIComponent(index) + '&imageUrl=' + encodeURIComponent(that.data.topicsData[index].imageUrl) + '&imageUrl2=' + encodeURIComponent(that.data.topicsData[index].imageUrl2) + '&imageUrl3=' + encodeURIComponent(that.data.topicsData[index].imageUrl3)+ '&videoUrl=' + encodeURIComponent(that.data.topicsData[index].videoUrl) + '&fileUrl=' + encodeURIComponent(that.data.topicsData[index].fileUrl) + "&topic_tag=" + 0
       //the length is limited
       //therefore encodeURI here and decode at the receievr side
     })
   }else{
     console.log("fileUrl: " + that.data.naaTopicsData[index].fileUrl);
     wx.navigateTo({
-      url: '../forumDetails/forumDetails?week=' + encodeURIComponent(that.data.naaTopicsData[index].topic_week) + '&title=' + encodeURIComponent(that.data.naaTopicsData[index].topic_title) + '&date=' + encodeURIComponent(that.data.naaTopicsData[index].topic_date) + '&detail=' + encodeURIComponent(that.data.naaTopicsData[index].topic_detail) + '&topic_id=' + encodeURIComponent(that.data.naaTopicsData[index].topic_id) + '&index=' + encodeURIComponent(index) + '&imageUrl=' + encodeURIComponent(that.data.naaTopicsData[index].imageUrl) + '&videoUrl=' + encodeURIComponent(that.data.naaTopicsData[index].videoUrl) + '&fileUrl=' + encodeURIComponent(that.data.naaTopicsData[index].fileUrl)
+      url: '../forumDetails/forumDetails?week=' + encodeURIComponent(that.data.naaTopicsData[index].topic_week) + '&title=' + encodeURIComponent(that.data.naaTopicsData[index].topic_title) + '&date=' + encodeURIComponent(that.data.naaTopicsData[index].topic_date) + '&detail=' + encodeURIComponent(that.data.naaTopicsData[index].topic_detail) + '&topic_id=' + encodeURIComponent(that.data.naaTopicsData[index].topic_id) + '&index=' + encodeURIComponent(index) + '&imageUrl=' + encodeURIComponent(that.data.naaTopicsData[index].imageUrl) + '&imageUrl2=' + encodeURIComponent(that.data.naaTopicsData[index].imageUrl2) + '&imageUrl3=' + encodeURIComponent(that.data.naaTopicsData[index].imageUrl3)+ '&videoUrl=' + encodeURIComponent(that.data.naaTopicsData[index].videoUrl) + '&fileUrl=' + encodeURIComponent(that.data.naaTopicsData[index].fileUrl) + "&topic_tag=" + 1
       //the length is limited
       //therefore encodeURI here and decode at the receievr side
     })
@@ -145,7 +179,7 @@ Page({
         console.log("err: " + res)
       }
     })
-
+    
   //get NAA TOPICS
     wx.request({
       method: 'GET',
@@ -181,6 +215,17 @@ Page({
       role: app.globalData.role
     })
 
+    wx.getStorage({
+      key: 'userData',
+      success: function (res) {
+
+        console.log(res)
+
+        that.setData({
+          language:res.data.language
+        })
+      },
+    })
 
 
     console.log("The role is : " + that.data.role);
@@ -188,6 +233,8 @@ Page({
     console.log(app.globalData.user_id)
     
     that.saveFormIds();
+
+    that.computeScrollViewHeight();
 
   },
 

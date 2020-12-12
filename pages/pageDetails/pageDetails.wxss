@@ -1,40 +1,81 @@
 @import "../lib/weui.wxss";
 
-.textLayout{
+.textLayout {
   padding-left: 10px;
   font-weight: bold;
 }
 
-.textLayout-post{
+.textLayout-post {
 
   padding-left: 10px;
 }
 
-.myButton1{
-  border: 1px solid rgb(0, 110, 255); 
-  border-radius: 2px;  
+.myButton1 {
+  border: 1px solid rgb(0, 110, 255);
+  border-radius: 2px;
   background-color: white;
   margin: 15rpx;
   box-shadow: 5rpx 5rpx 5rpx 5rpx rgb(31, 6, 56);
-  
+
 }
 
-.title_font{
+.title_font {
   font-weight: bolder;
   font-size: xx-large;
-  
+
 }
 
-.myButton{
-  border: 1px solid rgb(142, 183, 238); 
-  border-radius: 2px;  
+.myButton {
+  border: 1px solid rgb(142, 183, 238);
+  border-radius: 2px;
   background-color: white;
   margin: 15rpx;
   box-shadow: 5rpx 5rpx 5rpx 5rpx rgb(31, 6, 56);
-  
+
 }
 
+.layout_horizontal {
 
-page{
+  display: flex;
+  /*row 横向  column 列表  */
+  flex-direction: row;
+  height: 100px;
+}
+
+.layout_horizontal1 {
+
+  display: flex;
+  /*row 横向  column 列表  */
+  flex-direction: row;
+  height: 300px;
+}
+
+.userinfo-avatar {
+  width: 158rpx;
+  height: 158rpx;
+  margin: 15rpx;
+  border-radius: 0%;
+  border-color:#000;
+  border-width: 5px;
+}
+
+page {
   background-color: #f0ebe5;
+}
+
+.image {
+  top: 20rpx;
+  margin-left: -25rpx;
+  display: flex;
+  width: 135rpx;
+  height: 135rpx;
+
+}
+
+.circle {
+  height: 68px;
+  border: 1 solid #123456;
+  background-color: #f0ebe5;
+  font-size: 5;
+  margin-left: 0rpx;
 }

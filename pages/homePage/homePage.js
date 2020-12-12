@@ -1,6 +1,7 @@
 const app = getApp();
 var baseUrl = app.globalData.host;
 var util = require('../../utils/util.js');
+var imageUtil = require('../../utils/util.js');
 
 Page({
 
@@ -11,8 +12,37 @@ Page({
     pageData:[],
     user_id: '',
     token: '',
-    role: app.globalData.role
+    role: app.globalData.role,
+    indicatorDots: false,
+    autoplay: false,
+    interval: 2000,
+    indicatordots: true,
+    duration: 1000,
+    profile_photo: '',
+    imgUrls: [
+      {
+        link: '/pages/index/index',
+        url: '../images/OLLE1.jpeg'
+      }, {
+        link: '/pages/logs/logs',
+        url: '../images/OLLE1.jpeg'
+      }, {
+        link: '/pages/index/index',
+        url: '../images/OLLE1.jpeg'
+      }
+    ],
+    indicatorDots: true,  //小点
+    autoplay1: true,  //是否自动轮播
+    interval: 3000,  //间隔时间
+    duration: 3000,  //滑动时间
+  },
 
+  imageLoad: function (e) {
+    var imageSize = imageUtil.imageUtil(e)
+    this.setData({
+      imagewidth: imageSize.imageWidth,
+      imageheight: imageSize.imageHeight
+    })
   },
 
   pageEdit: function(){
@@ -27,7 +57,7 @@ Page({
     var index = e;
     console.log("id: " + that.data.pageData[index].page_id);
     wx.navigateTo({
-      url: '../pageDetails/pageDetails?imageUrl=' + encodeURIComponent(that.data.pageData[index].imageUrl) + '&title=' + encodeURIComponent(that.data.pageData[index].page_title) + '&detail=' + encodeURIComponent(that.data.pageData[index].page_detail) + '&page_id=' + encodeURIComponent(that.data.pageData[index].page_id) + '&index=' + encodeURIComponent(index) + '&post_username=' + encodeURIComponent(that.data.pageData[index].post_username) + '&videoUrl=' + encodeURIComponent(that.data.pageData[index].videoUrl)
+      url: '../pageDetails/pageDetails?imageUrl=' + encodeURIComponent(that.data.pageData[index].imageUrl) + '&imageUrl2=' + encodeURIComponent(that.data.pageData[index].imageUrl2) + '&imageUrl3=' + encodeURIComponent(that.data.pageData[index].imageUrl3) + '&title=' + encodeURIComponent(that.data.pageData[index].page_title) + '&detail=' + encodeURIComponent(that.data.pageData[index].page_detail) + '&page_id=' + encodeURIComponent(that.data.pageData[index].page_id) + '&index=' + encodeURIComponent(index) + '&post_username=' + encodeURIComponent(that.data.pageData[index].post_username) + '&videoUrl=' + encodeURIComponent(that.data.pageData[index].videoUrl) + '&profile_photo=' + encodeURIComponent(that.data.pageData[index].profile_photo) + '&fileUrl=' + encodeURIComponent(that.data.pageData[index].fileUrl) 
       //the length is limited
       //therefore encodeURI here and decode at the receievr side
     })

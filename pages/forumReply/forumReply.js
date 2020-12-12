@@ -19,7 +19,9 @@ Page({
     language: '',
     topic_id: '',
     post_post_id: '',
-    index1: ''
+    index1: '',
+    topic_tag: '',
+    profile_photo: ''
   },
 
   /**
@@ -31,21 +33,38 @@ Page({
     that.setData({
       kind: options.id,
       index: options.index,//reply's index
-      index1: options.index1//comment's index
+      index1: options.index1,//comment's index
+      topic_tag: options.topic_tag
     })
 
-    wx.getStorage({
-      key: 'topicsData',
-      success: function (res) {
-        console.log(res);
+    if(options.topic_tag == 0){
+      wx.getStorage({
+        key: 'topicsData',
+        success: function (res) {
+          console.log(res);
 
 
-        that.setData({
-          postData: res.data[that.data.index],
-          topic_id: res.data[that.data.index].topic_id
-        })
-      }
-    })
+          that.setData({
+            postData: res.data[that.data.index],
+            topic_id: res.data[that.data.index].topic_id
+          })
+        }
+      })
+    } else if (options.topic_tag == 1){
+      wx.getStorage({
+        key: 'naaTopicsData',
+        success: function (res) {
+          console.log(res);
+
+
+          that.setData({
+            postData: res.data[that.data.index],
+            topic_id: res.data[that.data.index].topic_id
+          })
+        }
+      })
+    }
+    
 
     wx.getStorage({
       key: 'postedReply',
@@ -74,7 +93,8 @@ Page({
           post_username: res.data.username,
           token: res.data.token,
           username: res.data.username,
-          language: res.data.language
+          language: res.data.language,
+          profile_photo: res.data.photo
         })
 
         console.log(that.data.username)
@@ -142,7 +162,8 @@ Page({
           'parent_id': '0',
           'user_post': e.detail.value.user_post,
           'language': that.data.language,
-          'post_id': ''
+          'post_id': '',
+          'photo':that.data.profile_photo
 
         },
         header: {
@@ -228,8 +249,8 @@ Page({
           'parent_id': that.data.post_post_id,
           'user_post': e.detail.value.user_post,
           'language': that.data.language,
-          'post_id': ''
-
+          'post_id': '',
+          'photo': that.data.profile_photo
         },
         header: {
           'content-type': 'json' // 默认值

@@ -1,67 +1,121 @@
 @import "../lib/weui.wxss";
 
-.textLayout{
-  padding-left: 10px;
+.th-text {
+  width: 100%;
+  justify-content: center;
+  color: #000;
+  display: block;
+  height: 200rpx;
+  align-items: center;
+  max-height: 200rpx;
+}
+
+.userinfo-avatar {
+  width: 158rpx;
+  height: 158rpx;
+  margin: 15rpx;
+  border-radius: 0%;
+  border-color: #000;
+  border-width: 5px;
+}
+
+.input-radius {
+  width: 100%;
+  word-break: keep-all;
+  word-wrap: break-word;
+}
+
+.layout_horizontal {
+
+  display: flex;
+  /*row 横向  column 列表  */
+  flex-direction: row;
+  height: 300px;
+}
+
+.layout_horizontal1 {
+
+  display: flex;
+  /*row 横向  column 列表  */
+  flex-direction: row;
+  height: 260px;
+}
+
+.textLayout {
+  padding-left: 0px;
   font-weight: bold;
 }
 
-.textLayout-post{
-
-  padding-left: 10px;
+.textLayout1 {
+  padding-left: 20px;
+  font-weight: bold;
 }
 
-.myButton1{
-  border: 1px solid rgb(0, 110, 255); 
-  border-radius: 2px;  
+
+.textLayout-post {
+
+  padding-left: 15px;
+
+}
+
+.myButton1 {
+  border: 1px solid rgb(0, 110, 255);
+  border-radius: 2px;
+  background-color: rgb(255, 255, 255);
+  margin: 15rpx;
+  box-shadow: 5rpx 5rpx 5rpx 5rpx rgb(31, 6, 56);
+
+}
+
+.myButton2 {
+  border: 5px solid rgb(0, 110, 255);
+  border-radius: 2px;
+  background-color: white;
+  margin: 15rpx;
+
+
+}
+
+.myButton {
+  border: 1px solid rgb(251, 255, 0);
+  border-radius: 2px;
   background-color: white;
   margin: 15rpx;
   box-shadow: 5rpx 5rpx 5rpx 5rpx rgb(31, 6, 56);
-  
+
 }
 
-.myButton2{
-  border: 5px solid rgb(0, 110, 255); 
-  border-radius: 2px;  
-  background-color: white;
-  margin: 15rpx;
-  
-  
-}
-
-.myButton{
-  border: 1px solid rgb(251, 255, 0); 
-  border-radius: 2px;  
-  background-color: white;
-  margin: 15rpx;
-  box-shadow: 5rpx 5rpx 5rpx 5rpx rgb(31, 6, 56);
-  
-}
-
-.video_style{
-  justify-content: center; 
-  flex-direction: column; 
+.video_style {
+  justify-content: center;
+  flex-direction: column;
   display: flex;
   padding-left: 40px
 }
 
-.circle{
-    width: 68px;
-    height: 68px;
-    border: 1 solid #123456;
-    border-radius: 250px; 
-   font-size:5;
-  margin-left: 5rpx;
+.circle {
+  height: 68px;
+  border: 1 solid #123456;
+  background-color: #f0ebe5;
+  font-size: 5;
+  margin-left: 0rpx;
 }
 
-.image{
+.image {
   top: 20rpx;
   margin-left: -25rpx;
-   display: flex;
-   width: 135rpx;
-    height: 135rpx;
-   
+  display: flex;
+  width: 135rpx;
+  height: 135rpx;
+
 }
 
-page{
+page {
   background-color: #f0ebe5;
+}
+
+
+.input-radius {
+  width: 360px;
+  height: 10.8rem;
+  min-height: 5.8rem;
 }

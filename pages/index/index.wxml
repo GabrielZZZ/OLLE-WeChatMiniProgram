@@ -1,16 +1,15 @@
+<image style="width: {{imagewidth}}px; height: {{imageheight}}px;"  src="../images/OLLE1.jpeg" bindload="imageLoad"></image>
+
+
 <view wx:if="{{isHide}}">
     <view wx:if="{{canIUse}}" >
-        <view class='header'>
-            <image src='../images/wxlogin.png'></image>
-        </view>
- 
-        <view class='content'>
-            <view>Asking to get following permissions</view>
-            <text>Acquiring your public information (name, profile picture, etc.).</text>
-        </view>
+
+    <view class="text">
+      <text>This mini program is specifcally developed for OLLE project.</text>
+    </view>
  
         <button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
-          Authorized Login
+          I want to Login in
         </button>
     </view>
     <view wx:else>Please update your WeChat version.</view>

@@ -1,5 +1,6 @@
 const app = getApp();
 var baseUrl = app.globalData.host;
+var imageUtil = require('../../utils/util.js');
 
 Page({
 
@@ -10,12 +11,22 @@ Page({
     
   },
 
+
+  imageLoad: function (e) {
+    var imageSize = imageUtil.imageUtil(e)
+    this.setData({
+      imagewidth: imageSize.imageWidth,
+      imageheight: imageSize.imageHeight
+    })
+  },
+
+
   navigation: function (){
     wx.navigateTo({
       url: '../signUp/signUp',
     })
   },
-
+ 
 
   dealFormIds: function (formId) {
     
@@ -66,8 +77,8 @@ Page({
           app.globalData.user_id = res.data.userData.user_id;
           app.globalData.token = res.data.userData.token;
 
-          user_id = res.data.userData.user_id;
-          token = res.data.userData.token;
+          var user_id = res.data.userData.user_id;
+          var token = res.data.userData.token;
 
           // console.log(app.globalData.user_id)
           
@@ -191,9 +202,13 @@ Page({
       })
     }
     
+  },
 
-  
-    
+  goToUpdateHistory: function (e) {
+    console.log("hahah")
+    wx.navigateTo({
+      url: '../updateHistory/updateHistory'
+    })
   },
 
   /**
@@ -218,12 +233,13 @@ Page({
 
     var value = wx.getStorageSync('userData');
     
-    
+    console.log(value)
+
     if(value)
     {
       app.globalData.user_id = value.user_id;
       app.globalData.token = value.token;
-
+      app.globalData.profile_photo = value.photo;
       
       wx.switchTab({
         url: '../homePage/homePage'

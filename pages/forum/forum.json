@@ -2,7 +2,8 @@
   "navigationBarTitleText": "OLLE NOTTINGHAM",
   "enablePullDownRefresh": true,
   "navigationBarBackgroundColor": "#2c3646",
-  "navigationBarTextStyle": "white"
+  "navigationBarTextStyle": "white",
+  "disableScroll": true
 
   
 }

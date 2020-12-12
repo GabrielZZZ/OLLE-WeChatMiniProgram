@@ -1,6 +1,60 @@
 const app = getApp();
 var baseUrl = app.globalData.host;
 
+var COS = require('../lib/cos-wx-sdk-v5')
+var config = require('./config')
+
+var cos = new COS({
+  getAuthorization: function (params, callback) {//获取签名 必填参数
+
+    // 方法一（推荐）服务器提供计算签名的接口
+    /*
+    wx.request({
+        url: 'SIGN_SERVER_URL',
+        data: {
+            Method: params.Method,
+            Key: params.Key
+        },
+        dataType: 'text',
+        success: function (result) {
+            callback(result.data);
+        }
+    });
+    */
+
+    // 异步获取签名
+    wx.request({
+      url: baseUrl + 'sts.php', // 步骤二提供的签名接口
+      data: {
+        Method: params.Method,
+        Key: params.Key
+      },
+      dataType: 'text',
+      success: function (result) {
+        console.log("Look here!");
+        console.log(result);
+        var data = result.data;
+        callback({
+          TmpSecretId: data.credentials && data.credentials.tmpSecretId,
+          TmpSecretKey: data.credentials && data.credentials.tmpSecretKey,
+          XCosSecurityToken: data.credentials && data.credentials.sessionToken,
+          ExpiredTime: data.expiredTime,
+        });
+      }
+    });
+  }
+
+  // 方法二（适用于前端调试）
+  //   var authorization = COS.getAuthorization({
+  //     SecretId: config.SecretId,
+  //     SecretKey: config.SecretKey,
+  //     Method: params.Method,
+  //     Key: params.Key
+  //   });
+  //   callback(authorization);
+  // }
+});
+
 Page({
 
   /**
@@ -11,13 +65,144 @@ Page({
     surname:'',
     username: '',
     user_id: '',
-   role: ''
+    role: '',
+    profile_photo: '',
+    
   },
 
   logout: function(){
     wx.clearStorage();
     wx.redirectTo({
       url: '../login/login',
+    })
+  },
+
+  requestCallback: function (err, data) {
+    var that = this;
+    console.log(err || data);
+
+    if (err && err.error) {
+      wx.showModal({ title: '返回错误', content: '请求失败：' + err.error.Message + '；状态码：' + err.statusCode, showCancel: false });
+    } else if (err) {
+      wx.showModal({ title: '请求出错', content: '请求出错：' + err + '；状态码：' + err.statusCode, showCancel: false });
+    } else {
+      wx.showToast({ title: '请求成功', icon: 'success', duration: 3000 });
+
+      console.log("profile_photo:" + app.globalData.profile_photo)
+
+
+      const requestTask = wx.request({
+        method: 'POST',
+        url: baseUrl + 'updatePhoto',
+        data: {
+          
+          'user_id': that.data.user_id,
+          'photo': app.globalData.profile_photo
+
+        },
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success: function (res) {
+          console.log(res.data);
+
+
+          //update local data
+          wx.setStorage({
+            key: 'userData',
+            data: res.data.userData,
+          })
+
+          
+          if (res.data.userData) {
+            wx.showModal({
+              title: 'Success',
+              content: 'Image uploaded successfully!',
+              showCancel: false,
+
+              confirmText: "确定",
+              confirmColor: "#0f0",
+              success: function (res) {
+                if (res.confirm) {
+
+                  //update getposted reply
+       
+                  wx.reLaunch({
+                    url: '../myOlle/myOlle',
+                  })
+
+                } else if (res.cancel) {
+                  console.log("cancle")
+                }
+              }
+            })
+          } else if (res.data.error) {
+            wx.showModal({
+              title: 'Caution',
+              content: 'Something wrong with connection to the server :(',
+              showCancel: false,
+
+              confirmText: "确定",
+              confirmColor: "#0f0",
+              success: function (res) {
+                if (res.confirm) {
+                  console.log("confirm")
+                } else if (res.cancel) {
+                  console.log("cancle")
+                }
+              }
+            })
+          } 
+        },
+        fail: function (res) {
+          console.log('err' + ':' + res);
+
+        }
+      })
+    }
+  },
+
+  simpleUpload_image: function (e) {
+    var that = this;
+    
+    // 选择文件
+    wx.chooseImage({
+      count: 1, // 默认9
+      sizeType: ['original', 'compressed'], // original or compressed
+      sourceType: ['album', 'camera'], // from album or camera
+      success: function (res) {
+
+
+        var filePath = res.tempFilePaths[0]
+        console.log(filePath);
+        var Key = 'profile/' + filePath.substr(filePath.lastIndexOf('/') + 1);
+        // the first index is the folder in bucket
+        console.log("key: " + Key)
+        console.log("filepath: " + filePath)
+        console.log(res.tempFilePaths)
+
+        app.globalData.profile_photo =  'http://' + config.Bucket + '.cos.' + config.Region + '.myqcloud.com/' + Key
+          // that.setData({
+          //   profile_photo: 'http://' + config.Bucket + '.cos.' + config.Region + '.myqcloud.com/' + Key
+          // })
+        
+        console.log("Success! url is " + app.globalData.profile_photo);
+
+
+
+
+
+        cos.postObject({
+          Bucket: config.Bucket,
+          Region: config.Region,
+          Key: Key,
+          FilePath: filePath,
+          onProgress: function (info) {
+            console.log(JSON.stringify(info));
+
+          }
+        }, that.requestCallback);
+      }
     })
   },
 
@@ -58,15 +243,48 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
+    if (app.globalData.userInfo) {
+      this.setData({
+        userInfo: app.globalData.userInfo,
+        hasUserInfo: true
+      })
+    } else if (this.data.canIUse) {
+      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+      // 所以此处加入 callback 以防止这种情况
+      app.userInfoReadyCallback = res => {
+        this.setData({
+          userInfo: res.userInfo,
+          hasUserInfo: true
+        })
+      }
+    } else {
+      // 在没有 open-type=getUserInfo 版本的兼容处理
+      wx.getUserInfo({
+        success: res => {
+          app.globalData.userInfo = res.userInfo
+          this.setData({
+            userInfo: res.userInfo,
+            hasUserInfo: true
+          })
+        }
+      })
+    }
+
+
     var that = this;
     wx.getStorage({
       key: 'userData',
       success: function(res) {
+
+        console.log(res)
+
         that.setData({
           name: res.data.name,
           surname: res.data.surname,
           username: res.data.username,
           user_id: res.data.user_id,
+          profile_photo: res.data.profile_photo
         })
       },
     })
@@ -95,6 +313,18 @@ Page({
 
     
   },
+
+  getUserInfo: function (e) {
+    console.log(e)
+    app.globalData.userInfo = e.detail.userInfo
+    this.setData({
+      userInfo: e.detail.userInfo,
+      hasUserInfo: true
+    })
+  },
+
+
+
 
   saveFormIds: function () {
     var formIds = app.globalData.globalFormIds; // 获取gloabalFomIds
@@ -229,7 +459,9 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    
+    wx.reLaunch({
+      url: 'myOlle'
+    })
   },
 
   /**

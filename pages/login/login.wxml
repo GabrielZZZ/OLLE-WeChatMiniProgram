@@ -1,3 +1,9 @@
+<image style="width: {{imagewidth}}px; height: {{imageheight}}px;"  src="../images/OLLE1.jpeg" bindload="imageLoad"></image>
+
+<view class="text" >
+      <text>OLLE (Online Language Learning Exchange) is a one-year NAA programme, partnered with the Language Centre. It aims to provide participants with the opportunity to interact with other language learners and understand more about different cultures.</text>
+</view>
+
 <form bindsubmit="formSubmit" report-submit="true">
 <view class="page-section">
   <view class="weui-cells weui-cells_after-title">
@@ -24,3 +30,5 @@
         SIGN UP </button>
 
 </form>
+
+<button class='btn1' bindtap="goToUpdateHistory">Update History</button>

@@ -2,3 +2,9 @@
 page{
   background-color: #f0ebe5;
 }
+
+.input-radius{
+  width: 360px;
+  height: 30.8rem;
+  min-height: 20.8rem;
+}

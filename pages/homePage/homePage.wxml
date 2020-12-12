@@ -1,3 +1,19 @@
+<!--Image Swiper-->
+<swiper indicator-dots="{{indicatorDots}}"  
+           autoplay="{{autoplay1}}" interval="{{interval}}" duration="{{duration}}" circular="true" style='width:100%; height:350rpx;'>  
+         <block wx:for="{{imgUrls}}">  
+           <swiper-item>  
+              <navigator url="{{item.link}}" hover-class="navigator-hover">  
+               <image src="{{item.url}}"  style="width:100%;  height:350rpx"mode="aspectFill" />  
+              </navigator>  
+           </swiper-item>  
+         </block>  
+ </swiper> 
+
+<!-->
+<image style="width: {{imagewidth}}px; height: {{imageheight}}px;"  src="../images/OLLE1.jpeg" bindload="imageLoad"></image>
+<-->
+
 <view class="layout_horizontal">
     <view style="width:200px">
       <text class="header_style">Pages List</text>
@@ -12,7 +28,7 @@
     </view>
 </view>
 
-
+<!-->
 <view wx:for="{{pageData}}" wx:for-item="item" wx:for-index="index">
 
   <form bindsubmit="formSubmit" report-submit="true"> 
@@ -28,3 +44,60 @@
 <view wx:if="{{role == 666}}">  
   <button bindtap='sendNotification'>send notification</button>
 </view>
+
+<-->
+<!-->
+--------------------- 
+作者：a_靖 
+来源：CSDN 
+原文：https://blog.csdn.net/qq_35713752/article/details/80676764 
+版权声明：本文为博主原创文章，转载请附上博文链接！
+<-->
+
+<view class="mainFrame">
+  <swiper class="container" indicator-dots="{{indicatorDots}}" indicator-dots="{{indicatordots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{pageData}}" wx:key="key" wx:for-index="index">
+      <swiper-item class="vol-swiper-item" >
+        
+        <view class="vol-card" data-id="{{item.id}}" catchtap="onPostTap">
+ 
+          <!--<view data-detail-href="{{item.detailHref}}" class="item">-->
+ 
+          <!--图片-->
+          
+          <image class="vol-picture"   src="{{item.imageUrl}}"   mode="aspectFill"></image>
+
+
+          <!--标题-->
+          <view class="vol-meta-title">
+            <text class="vol-number" style='font-weight: bold; font-size: larger'>{{item.page_title}}</text>
+          </view>
+ 
+          <!--时间-->
+          <view class="vol-meta-time">
+
+             <text>Author: </text>
+             <text style='color: #965454;font-weight: bold;'>{{item.post_username}}\n</text>
+            
+          </view>
+ 
+          <!--描述信息>
+          <view class="vol-content">
+            <text class="vol-content-text">{{item.description}}</text>
+          </view>
+          <-->
+
+          <form bindsubmit="formSubmit" report-submit="true"> 
+          <button form-type='submit' id='{{index}}' class='myButton'>
+          Click Me to View
+          </button>
+        </form>
+
+
+          <!--</view>-->
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+

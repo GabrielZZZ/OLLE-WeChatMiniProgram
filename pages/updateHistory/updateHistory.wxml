@@ -1,0 +1,23 @@
+<view style='margin-left: 10px'>
+      <text style='font-weight: bold; font-size: larger'>New Updates\n\n</text>
+      
+       <text style='font-weight: bold'>Version 3.2.0 (2019.9.20):\n</text>
+      <text style='font-weight: bold'>- Improving User Interface \n</text>
+
+      <text style='font-weight: bold'>- Bug Fixes.\n\n</text>
+
+      <text style='font-weight: bold'>Version 3.1.0 (2019.7.9):\n</text>
+      <text style='font-weight: bold'>- Adding Profile Photo Function: </text>
+      <text>users can choose their profile photos and be viewed in home pages & forum topics\n</text>
+
+      <text style='font-weight: bold'>- Bug Fixes.\n\n</text>
+
+
+      <text style='font-weight: bold'>Version 3.0.0 (2019.6.10):\n</text>
+      <text style='font-weight: bold'>- Adding Image Slides Function: </text>
+      <text>now there are image slides in topics and pages\n</text>
+      <text style='font-weight: bold'>- Increasing the Maximum Number of Images in Topics and Pages to Three.\n</text>
+      <text style='font-weight: bold'>- Bug Fixes.</text>
+    
+
+    </view>

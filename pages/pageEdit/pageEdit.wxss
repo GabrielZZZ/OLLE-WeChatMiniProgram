@@ -11,3 +11,9 @@
 page{
   background-color: #f0ebe5;
 }
+
+.text1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,4 +1,23 @@
-<text class="header_style">My OLLE</text>
+
+<view class="userinfo">
+<button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image class="userinfo-avatar" src="{{profile_photo}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{username}}</text>
+    </block>
+
+</view>
+
+
+<!-- Update Profile Photo not working: there is no function in backend -->
+<!-- <view style="width:300px; padding-left:10px; margin-bottom: 9rpx;">
+      <button class='btn2' bindtap="simpleUpload_image">Change Profile Photo</button>
+
+</view> -->
+
+
+
+
 
 <view>
   <!--横向1个固定大小，一个弹簧  -->

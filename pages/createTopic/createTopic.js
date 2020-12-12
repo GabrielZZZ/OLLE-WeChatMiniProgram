@@ -1,6 +1,6 @@
 const app = getApp();
 var baseUrl = app.globalData.host;
-
+var util = require('../../utils/util.js');
 var COS = require('../lib/cos-wx-sdk-v5')
 var config = require('./config')
 
@@ -66,13 +66,30 @@ Page({
     detail: '',
     week: '',
     user_id: '',
+    language:'',
     post_username: '',
     token: '',
     tempFilePaths: '',
-    imageUrl: 'null',
+    imageUrl: 'https://olle2019-1257377975.cos.ap-chengdu.myqcloud.com/OLLE.png',
     videoUrl: 'null',
     topic_tag: '',
-    fileUrl: 'null'
+    fileUrl: 'null',
+    imageUrl2: 'null',
+    imageUrl3: 'null',
+    time:'',
+    items: [
+      { name: 'SPANISH', value: 'SPANISH' },
+      { name: 'FRENCH', value: 'FRENCH' },
+      { name: 'JAPANESE', value: 'JAPANESE' },
+      { name: 'ITALIAN', value: 'ITALIAN' },
+      { name: 'KOREAN', value: 'KOREAN' },
+      { name: 'ENGLISH', value: 'ENGLISH' },
+      { name: 'MANDARIAN', value: 'MANDARIAN' },
+    ]
+  },
+
+  radioChange(e) {
+    console.log('radio发生change事件，携带value值为：', e.detail.value)
   },
 
   requestCallback: function (err, data) {
@@ -91,7 +108,7 @@ Page({
     }
   },
 
-  simpleUpload_image: function () {
+  simpleUpload_image: function (e) {
     var that = this;
     // 选择文件
     wx.chooseImage({
@@ -109,12 +126,22 @@ Page({
         console.log("filepath: " + filePath)
         console.log(res.tempFilePaths)
 
-
-        that.setData({
-          imageUrl: 'http://' + config.Bucket + '.cos.' + config.Region + '.myqcloud.com/' + Key
-
-        })
-
+        if (e.currentTarget.dataset.id == 1) {
+          that.setData({
+            imageUrl: 'http://' + config.Bucket + '.cos.' + config.Region + '.myqcloud.com/' + Key
+          })
+          console.log("Success! url is " + that.data.imageUrl);
+        } else if (e.currentTarget.dataset.id == 2) {
+          that.setData({
+            imageUrl2: 'http://' + config.Bucket + '.cos.' + config.Region + '.myqcloud.com/' + Key
+          })
+          console.log("Success! url2 is " + that.data.imageUrl2);
+        } else if (e.currentTarget.dataset.id == 3) {
+          that.setData({
+            imageUrl3: 'http://' + config.Bucket + '.cos.' + config.Region + '.myqcloud.com/' + Key
+          })
+          console.log("Success! url3 is " + that.data.imageUrl3);
+        }
 
         console.log("Success! url is " + that.data.imageUrl);
 
@@ -276,7 +303,9 @@ sendNotification: function () {
 
     if (e.detail.value.title && e.detail.value.detail) {
 
-
+      console.log("Test! image url is " + that.data.imageUrl);
+      console.log("Test! image url2 is " + that.data.imageUrl2);
+      console.log("Test! image url3 is " + that.data.imageUrl3);
 
       const requestTask = wx.request({
         method: 'POST',
@@ -285,16 +314,18 @@ sendNotification: function () {
           'topic_title': e.detail.value.title,
           'topic_detail': e.detail.value.detail,
           'topic_id': '',
-          'topic_week': e.detail.value.week,
-          'topic_date': e.detail.value.endDate,
+          'topic_week': '0',
+          'topic_date': that.data.time,
           'user_id': that.data.user_id,
           'post_username': that.data.post_username,
           'token': that.data.token,
           'imageUrl': that.data.imageUrl,
-          'videoUrl': that.data.videoUrl,
+          'imageUrl2': that.data.imageUrl2,
+          'imageUrl3': that.data.imageUrl3,
+          'videoUrl': e.detail.value.videoUrl1,
           'fileUrl': that.data.fileUrl,
-          'topic_tag': that.data.topic_tag
-
+          'topic_tag': that.data.topic_tag,
+          'language':that.data.language
 
         },
         header: {
@@ -416,7 +447,8 @@ sendNotification: function () {
         that.setData({
           post_username: res.data.username,
           user_id: res.data.user_id,
-          token: res.data.token
+          token: res.data.token,
+          language: res.data.language
         })
       },
     })
@@ -426,6 +458,13 @@ sendNotification: function () {
       //1: NAA TOPIC
       //0: NORMAL TOPIC
     })
+
+    // 调用函数时，传入new Date()参数，返回值是日期和时间
+    var time = util.formatTime(new Date());
+    // 再通过setData更改Page()里面的data，动态更新页面的数据
+    this.setData({
+      time: time
+    });
   },
 
   /**

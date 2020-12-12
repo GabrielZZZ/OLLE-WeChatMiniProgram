@@ -68,7 +68,11 @@ Page({
     post_username: '',
     token: '' ,
     imageUrl: 'null',
-    videoUrl: 'null'
+    videoUrl: 'null',
+    imageUrl2: 'null',
+    imageUrl3: 'null',
+    profile_photo: '',
+    fileUrl:'null'
   },
   
   
@@ -88,7 +92,7 @@ Page({
     }
   },
 
-  simpleUpload_image: function () {
+  simpleUpload_image: function (e) {
       var that = this;
       // 选择文件
       wx.chooseImage({
@@ -106,16 +110,23 @@ Page({
           console.log("filepath: "+filePath)
           console.log(res.tempFilePaths)
 
-
-          that.setData({
-            imageUrl: 'http://'+config.Bucket+'.cos.'+config.Region+'.myqcloud.com/'+Key
-
-          })
-
-
-          console.log("Success! url is " + that.data.imageUrl);
-
-
+          if (e.currentTarget.dataset.id == 1){
+            that.setData({
+              imageUrl: 'http://' + config.Bucket + '.cos.' + config.Region + '.myqcloud.com/' + Key
+            })
+            console.log("Success! url is " + that.data.imageUrl);
+          } else if (e.currentTarget.dataset.id == 2){
+            that.setData({
+              imageUrl2: 'http://' + config.Bucket + '.cos.' + config.Region + '.myqcloud.com/' + Key
+            })
+            console.log("Success! url2 is " + that.data.imageUrl2);
+          } else if (e.currentTarget.dataset.id == 3){
+            that.setData({
+              imageUrl3: 'http://' + config.Bucket + '.cos.' + config.Region + '.myqcloud.com/' + Key
+            })
+            console.log("Success! url3 is " + that.data.imageUrl3);
+          }
+          
 
 
 
@@ -175,6 +186,49 @@ Page({
     })
   },
 
+  /////upload file///////////////////////////////////
+  simpleUpload_file: function () {
+    var that = this;
+    // 选择文件
+    wx.chooseMessageFile({
+      count: 1, // 默认9
+      type: 'file',
+      success: function (res) {
+        console.log(res);
+        var filePath = res.tempFiles[0].path
+        console.log(filePath);
+
+        var Key = 'topics/' + filePath.substr(filePath.lastIndexOf('/') + 1);
+        // the first index is the folder in bucket
+        console.log("key: " + Key)
+        console.log("filepath: " + filePath)
+        console.log(res.tempFilePaths)
+
+
+        that.setData({
+          fileUrl: 'https://' + config.Bucket + '.cos.' + config.Region + '.myqcloud.com/' + Key
+
+        })
+
+
+        console.log("Success! url is " + that.data.fileUrl);
+
+
+        cos.postObject({
+          Bucket: config.Bucket,
+          Region: config.Region,
+          Key: Key,
+          FilePath: filePath,
+          onProgress: function (info) {
+            console.log(JSON.stringify(info));
+
+          }
+        }, that.requestCallback);
+      }
+    })
+  },
+  ///////////////////////////////////////
+
   formSubmit(e) {
     console.log('form发生了submit事件，携带数据为：', e.detail.value);
 
@@ -184,23 +238,27 @@ Page({
 
 
       console.log("Test! image url is " + that.data.imageUrl);
+      console.log("Test! image url2 is " + that.data.imageUrl2);
+      console.log("Test! image url3 is " + that.data.imageUrl3);
       console.log("Test! video url is " + that.data.videoUrl);
 
       const requestTask = wx.request({
         method: 'POST',
-        url: baseUrl + 'createPage',
+        url: baseUrl + 'createPage',//shoud add uploading profile_photo
         data: {
           'page_title': e.detail.value.page_title,
           'page_detail': e.detail.value.page_detail,
           'page_id': '',
           'imageUrl': that.data.imageUrl,
+          'imageUrl2': that.data.imageUrl2,
+          'imageUrl3': that.data.imageUrl3,
           'page_date': '',
           'user_id': that.data.user_id,
           'post_username': that.data.post_username,
           'token': that.data.token,
-          'videoUrl': that.data.videoUrl
-
-
+          'photo': that.data.profile_photo,
+          'videoUrl': e.detail.value.videoUrl1,
+          'fileUrl': that.data.fileUrl,
         },
         header: {
           'content-type': 'application/json' // 默认值
@@ -318,10 +376,13 @@ Page({
         that.setData({
           post_username: res.data.username,
           user_id: res.data.user_id,
-          token: res.data.token
+          token: res.data.token,
+          profile_photo: res.data.photo
         })
       },
     })
+
+
   },
 
 

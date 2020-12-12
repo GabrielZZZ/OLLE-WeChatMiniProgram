@@ -1,25 +1,36 @@
-<view class="container">
+<!-- <view style="margin-left:5px;margin-right:1px">
+    <text>When uploading images or files, please wait till the correct sign is showing then doing other operations.\n</text>
+</view> -->
+
+<!-- <view class="container">
     <view class="list">
-        <button type="primary" class="button" bindtap="simpleUpload_image">UPLOAD IMAGE</button>
+        <button type="primary" class="button" bindtap="simpleUpload_image" data-id='1'>UPLOAD IMAGE1</button>
         <text>\n</text>
+
+        <button type="primary" class="button" bindtap="simpleUpload_image" data-id='2'>UPLOAD IMAGE2</button>
+        <text>\n</text>
+
+        <button type="primary" class="button" bindtap="simpleUpload_image" data-id='3'>UPLOAD IMAGE3</button>
+        <text>\n</text>
+
 
         <button type="primary" class="button" bindtap="simpleUpload_video">UPLOAD VIDEO</button>
         <text>\n</text>
-    
+
 
     <button type="primary" class="button" bindtap="simpleUpload_file">UPLOAD FILE</button>
+     
     </view>
-</view>
-
+</view> -->
 
 <form bindsubmit="formSubmit">
-  <view class="page-section">
+  <!-- <view class="page-section">
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell weui-cell_input">
         <input class="weui-input" auto-focus placeholder="Week" name="week"/>
       </view>
     </view>
-  </view>
+  </view> -->
 
   <view class="page-section">
     <view class="weui-cells weui-cells_after-title">
@@ -32,13 +43,21 @@
   <view class="page-section">
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell weui-cell_input">
-        <input class="weui-input" auto-focus placeholder="Topic Detail" name="detail"/>
+      <textarea class="input-radius" auto-focus placeholder="Topic Detail" name="detail" auto-height='true' auto-focus='false' maxlength='10000'/>
       </view>
     </view>
   </view>
 
+  <!-- <view class="page-section">
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+      <textarea class="input-radius" auto-focus placeholder="Video URL" name="videoUrl1" auto-height='true' auto-focus='false' maxlength='10000'/>    
+      </view>
+    </view>
+  </view> -->
 
-  <view class="section">
+
+  <!-- <view class="section">
   <view class="section__title" style='padding-left: 10px'>Deadline: </view>
   <picker
     mode="date"
@@ -52,9 +71,18 @@
       Currently Sellected: {{endDate}}
     </view>
   </picker>
-  </view>
+  </view> -->
 
-  
+  <!-- <radio-group class="radio" bindchange="radioChange" name="language">
+  <label class="radio" wx:for="{{items}}"   style="display: flex; padding-left: 5px;">
+    <radio value="{{item.name}}" checked="{{item.checked}}">
+    {{item.value}}</radio>
+  </label>
+
+</radio-group> -->
+
+
+
   <button type="warn" size="default"  plain="{{false}}"
         
         form-type='submit'> CONFIRM </button>

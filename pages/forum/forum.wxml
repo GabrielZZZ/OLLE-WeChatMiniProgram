@@ -1,41 +1,44 @@
+<image style="width: {{imagewidth}}px; height: {{imageheight}}px;" src="../images/OLLE1.jpeg" bindload="imageLoad">
+</image>
 
- <view wx:if="{{role == 666  || role == 1}}" style='padding-top:5px'> 
-      <view class="flex-row" style="display: flex;flex-direction: row;justify-content: center;">
-      <view class="flex-view-item">
-        <text decode="{{true}}" style='font-weight: bold; color: #2c3646;'> Normal Topic&nbsp;&nbsp;</text>
+
+<view wx:if="{{role == 666  || role == 1}}" style='padding-top:5px'>
+  <view class="flex-row" style="display: flex;flex-direction: row;justify-content: center;">
+    <view class="flex-view-item">
+      <text decode="{{true}}" style='font-weight: bold; color: #2c3646;'> Normal Topic&nbsp;&nbsp;</text>
+    </view>
+    <view class="flex-view-item">
+      <view style='display: flex; flex-direction: row; justify-content: center;'>
+        <switch checked="{{topicType}}" bindchange="changeTopicType" type='switch' />
       </view>
-      <view class="flex-view-item">
-        <view style='display: flex; flex-direction: row; justify-content: center;'>
-            <switch checked="{{topicType}}" bindchange="changeTopicType" type='switch'/>
-        </view>
-      </view>
-      <view class="flex-view-item">
-        <text  decode="{{true}}" style='font-weight: bold; color: #2c3646;'>&nbsp;&nbsp;NAA Topic</text>
-      </view>
-      </view>
+    </view>
+    <view class="flex-view-item">
+      <text decode="{{true}}" style='font-weight: bold; color: #2c3646;'>&nbsp;&nbsp;NAA Topic</text>
+    </view>
+  </view>
 </view>
 
- 
- 
- 
+
+
+
 
 <view class="layout_horizontal">
-    <view style="width:200px">
-      <text class="header_style">Topics List</text>
+  <view style="width:200px">
+    <text class="header_style">Topics List</text>
 
+  </view>
+  <view style="flex:1;width:100px;">
+    <!-- <view wx:if="{{role == 666}}"> -->
+    <view class='button_layout'>
+      <button bindtap='createTopic' class='button_create'>+</button>
     </view>
-    <view style="flex:1;width:100px;">
-      <view wx:if="{{role == 666}}">
-        <view class='button_layout'>
-          <button bindtap='createTopic' class='button_create'>+</button>
-        </view>
-      </view>
-    </view>
+    <!-- </view> -->
+  </view>
 </view>
 
 
 
-
+<!-->
 <view wx:if="{{topic_type == false}}">
   <view wx:for="{{topicsData}}" wx:for-item="item" wx:for-index="index">
   
@@ -62,4 +65,132 @@
       </button>
     </form>
   </view>
+</view>
+
+<-->
+
+<!-->
+--------------------- 
+作者：a_靖 
+来源：CSDN 
+原文：https://blog.csdn.net/qq_35713752/article/details/80676764 
+版权声明：本文为博主原创文章，转载请附上博文链接！
+<-->
+
+<view class="mainFrame">
+  <!-- <swiper class="container" indicator-dots="{{indicatorDots}}" indicator-dots="{{indicatordots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}"> -->
+  <scroll-view scroll-y='true' style='height:{{scrollHeight + imageHeight + "rpx"}}'>
+  <view wx:if="{{topic_type == false}}" class="vol-swiper-item">
+    <block wx:for="{{topicsData}}" wx:key="key" wx:for-index="index">
+
+      <!-- <swiper-item class="vol-swiper-item" > -->
+      <!-- <view wx:if="{{item.language == language}}"> -->
+        <view class="vol-card" data-id="{{item.id}}" catchtap="onPostTap">
+
+          <!--<view data-detail-href="{{item.detailHref}}" class="item">-->
+
+          <!--图片-->
+
+          <image class="vol-picture" src="{{item.imageUrl}}" mode="aspectFill"></image>
+
+
+          <!--标题-->
+          <view class="vol-meta-title">
+            <text class="vol-number" style='font-weight: bold; font-size: larger'>{{item.topic_title}}</text>
+          </view>
+
+          <!--author-->
+          <view class="vol-meta-time">
+
+            <text>Author: </text>
+            <text style='color: #965454;font-weight: bold;'>{{item.post_username}}\n</text>
+
+          </view>
+
+
+          <!--时间-->
+          <view class="vol-meta-time">
+
+            <text>Date: </text>
+            <text style='color: #965454;font-weight: bold;'>{{item.topic_date}}\n</text>
+
+          </view>
+
+          <!--描述信息>
+          <view class="vol-content">
+            <text class="vol-content-text">{{item.description}}</text>
+          </view>
+          <-->
+
+          <form bindsubmit="formSubmit" report-submit="true">
+            <button form-type='submit' id='{{index}}' class='myButton'>
+              Click Me to View
+            </button>
+          </form>
+
+
+          <!--</view>-->
+        </view>
+      <!-- </view> -->
+      <!-- </swiper-item> -->
+    </block>
+  </view>
+
+  <view wx:if="{{topic_type == true}}">
+    <block wx:for="{{naaTopicsData}}" wx:key="key" wx:for-index="index">
+      <!-- <swiper-item class="vol-swiper-item" > -->
+      <!-- <view wx:if="{{item.language == language}}"> -->
+        <view class="vol-card" data-id="{{item.id}}" catchtap="onPostTap">
+
+          <!--<view data-detail-href="{{item.detailHref}}" class="item">-->
+
+          <!--图片-->
+
+          <image class="vol-picture" src="{{item.imageUrl}}" mode="aspectFill"></image>
+
+
+          <!--标题-->
+          <view class="vol-meta-title">
+            <text class="vol-number" style='font-weight: bold; font-size: larger'>{{item.topic_title}}</text>
+          </view>
+
+          <!--author-->
+          <view class="vol-meta-time">
+
+            <text>Author: </text>
+            <text style='color: #965454;font-weight: bold;'>{{item.post_username}}\n</text>
+
+          </view>
+
+          <!--时间-->
+          <view class="vol-meta-time">
+
+            <text>Date: </text>
+            <text style='color: #965454;font-weight: bold;'>{{item.topic_date}}\n</text>
+
+          </view>
+
+          <!--描述信息>
+          <view class="vol-content">
+            <text class="vol-content-text">{{item.description}}</text>
+          </view>
+          <-->
+
+          <form bindsubmit="formSubmit" report-submit="true">
+            <button form-type='submit' id='{{index}}' class='myButton'>
+              Click Me to View
+            </button>
+          </form>
+
+
+          <!--</view>-->
+        </view>
+      <!-- </view> -->
+      <!-- </swiper-item> -->
+    </block>
+  </view>
+
+
+  </scroll-view>
+  <!-- </swiper> -->
 </view>

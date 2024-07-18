@@ -8,10 +8,10 @@
 ***************************************************************************************/
 
 var config = {
-  Bucket: 'olle2019-1257377975',//replace with yours
-  Region: 'ap-chengdu',//replace with yours
-  SecretId: 'AKIDbZa9XGnVV1kXt3A7yNypUyT1gBUI6ppe',//replace with yours
-  SecretKey: 'rXbnrXZsw4f2vdaixVTDkE2e6kD8luYz'//replace with yours
+  Bucket: '',//replace with yours
+  Region: '',//replace with yours
+  SecretId: '',//replace with yours
+  SecretKey: ''//replace with yours
 }
 
 module.exports = config

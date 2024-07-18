@@ -1,7 +1,7 @@
 <view>
 
 	<view wx:if="{{!isShowImage}}">
-		<image style="width: {{imagewidth}}px; height: {{imageheight}}px;" src="../images/OLLE.png" bindload="imageLoad" />
+		<image style="width: {{imagewidth}}px; height: {{imageheight}}px;" src="" bindload="imageLoad" />
 	</view>
 
 	<view wx:if="{{isShowImage}}">

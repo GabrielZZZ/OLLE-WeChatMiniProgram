@@ -27,13 +27,19 @@
     <text class="header_style">Topics List</text>
 
   </view>
-  <view style="flex:1;width:100px;">
-    <!-- <view wx:if="{{role == 666}}"> -->
+
+<!--
+ <view style="flex:1;width:100px;">
+    <view wx:if="{{role == 666}}">
     <view class='button_layout'>
       <button bindtap='createTopic' class='button_create'>+</button>
     </view>
-    <!-- </view> -->
+    </view>
   </view>
+-->
+ 
+
+
 </view>
 
 

@@ -151,10 +151,10 @@ Page({
     
     //get NORMAL TOPICS
     wx.request({
-      method: 'GET',
+      method: 'POST',
       url: baseUrl + 'getTopics',
       data: {
-
+          topic_type: '1' // '1' represents Announcements in the App
       },
       header: {
         'content-type': 'application/json' // 默认值
@@ -182,10 +182,10 @@ Page({
     
   //get NAA TOPICS
     wx.request({
-      method: 'GET',
+      method: 'POST',
       url: baseUrl + 'getNaaTopics',
       data: {
-
+        topic_type: '1'
       },
       header: {
         'content-type': 'application/json' // 默认值
